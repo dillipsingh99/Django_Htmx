@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="align-center col-10 offset-1">
+    <div class="d-flex justify-content-between align-items-center">
+        <p class="lead ml-0">My Films</p>
+        <form hx-post="{% url 'add-film' %}" hx-target='#film-list' class="d-flex align-items-center" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' id="add-film-form" hx-swap-oob="true">
+            <input type="text" name="filmname" class="form-control-sm mr-2" placeholder="Enter a film" required/>
+            <button hx-post="{% url 'add-film' %}" hx-target="#film_list" type="submit" class="btn btn-success btn-sm" hx-swap="afterbegin">Add Film</button>
+        </form>
+    </div>
+    <hr/>
+    
+    <div id="film-list">
+        {% include 'partials/film-list.html' %}
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block script %}
+<script>
+    function clear(){
+        console.log('here')
+        document.getElementById('add-film-form').reset();
+    }
+
+</script>
+{% endblock script %}

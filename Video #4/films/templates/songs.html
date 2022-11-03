@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="align-center col-10 offset-1">
+    <div class="d-flex justify-content-between align-items-center">
+        <p class="lead ml-0">My Songs</p>
+        <form hx-post="{% url 'add-song' %}"  hx-target="#song-list" action="POST">
+            {% csrf_token %}
+            <input type="text" name="songname" onfocus="this.value=''" class="form-control-sm mr-2" placeholde="Enter a song" />
+            <button class="btn btn-success btn-sm" hx-post="{% url 'add-song' %}" hx-target="#song-list" type="submit" >Add Song</button>
+        </form>
+    </div>
+    <hr/>
+    
+    <div id="song-list">
+        {% include 'partials/song-list.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}

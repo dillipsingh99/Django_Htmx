@@ -1,0 +1,21 @@
+{% if films %}
+
+    {% csrf_token %}
+    <ul class="list-group col-4" id="film_list">
+    {% for film in films %}
+        <li class="list-group-item d-flex justify-content-between align-items-center" id="film_{{film.id}}">
+            {{ film.name }}
+            <span class="badge badge-danger badge-pill" 
+                style="cursor: pointer;"
+                hx-get="{% url 'delete-film' film.pk %}"
+                hx-target="#film_{{film.id}}"
+                hx-confirm="Are you sure you wish to delete?"
+                hx-swap="delete"
+                >X</span>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You do not have any films in your list</p>
+{% endif %}
+

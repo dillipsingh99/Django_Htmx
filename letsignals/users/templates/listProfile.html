@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+      {% for item in data %}
+        <p>User : {{item.user}}</p>
+        <p>User First_name :{{item.first_name}}</p>
+        <a href="{% url 'editProfile' pk=item.pk %}">edit</a>
+          <hr>
+      {% endfor %}
+
+{% endblock content %}

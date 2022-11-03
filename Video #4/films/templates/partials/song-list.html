@@ -1,0 +1,11 @@
+
+{% if songs %}
+    {% csrf_token %}
+    <ul class="list-group col-4" id="film_list">
+    {% for song in songs %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">{{ song.name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <P>You do not have any sons in yor list.</P>
+{% endif %}
